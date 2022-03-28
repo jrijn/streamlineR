@@ -1,0 +1,13 @@
+Package: streamlineR
+Type: Package
+Title: Streamline Data Analysis with R
+Version: 0.1.0
+Author: Jorik M. van Rijn
+Maintainer: Jorik M. van Rijn <jorik.vanrijn@gmail.com>
+Description: This package bundles a number of useful functions and
+    functionalities to streamline my data analysis habits using R. 
+    This includes extended pubR themes for ggplot2, color-blind friendly 
+    color schemes, etc.
+License: CC0-1.0 (Creative Commons v1.0)
+Encoding: UTF-8
+LazyData: true

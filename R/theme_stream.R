@@ -26,6 +26,13 @@
 #'  Use 90 for vertical text.
 #' @param flip logical. If TRUE, grid lines are added to y axis instead of x
 #'  axis.
+#' @param major_grid logical. If TRUE, major grid lines are added.
+#' @param minor_grid logical. If TRUE, minor grid lines are added.
+#' @param base_line_size numerical. Specifies the default element_line() size
+#'  for plots. Defaults to base_size/20.
+#' @param base_line_size numerical. Specifies the default line size for
+#'  element_rect() in plots. Defaults to base_size/20.
+#' @param aspect.ratio numerical. Specifies the aspect ratio of the plot.
 #' @examples
 #' p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
 #'   geom_point(aes(color = gear))
@@ -33,17 +40,13 @@
 #' # Default plot
 #' p
 #'
-#' # Use theme_pubr()
-#' p + theme_pubr()
+#' # Use theme_stream()
+#' p + theme_stream()
 #'
-#' # Format labels
-#' p + labs_pubr()
-#'
-#' @name theme_pubr
-#' @rdname theme_pubr
+#' @name theme_stream
+#' @rdname theme_stream
 #' @export
-
-theme_rijn <- function(base_size = 12,
+theme_stream <- function(base_size = 12,
                        base_family = "sans",
                        border = FALSE,
                        margin = TRUE,
@@ -58,7 +61,8 @@ theme_rijn <- function(base_size = 12,
   if (!is.numeric(legend)) legend <- match.arg(legend)
   if (x.text.angle > 5) xhjust <- 1 else xhjust <- NULL
   if (border) {
-    panel.border <- element_rect(fill = NA, colour = "black", size = base_rect_size)
+    panel.border <- element_rect(fill = NA, colour = "black",
+                                 size = base_rect_size)
     axis.line <- element_blank()
   } else {
     panel.border <- element_blank()
@@ -94,7 +98,8 @@ theme_rijn <- function(base_size = 12,
       axis.line = axis.line,
       axis.text = element_text(color = "black", size = base_size),
       legend.key = element_blank(),
-      strip.background = element_rect(fill = NA, colour = "black", size = base_line_size),
+      strip.background = element_rect(fill = NA, colour = "black",
+                                      size = base_line_size),
       strip.text = element_text(
         colour = "black",
         margin = margin(
@@ -110,7 +115,8 @@ theme_rijn <- function(base_size = 12,
     )
 
   if (x.text.angle != 0) {
-    .theme <- .theme + theme(axis.text.x = element_text(angle = x.text.angle, hjust = xhjust))
+    .theme <- .theme + theme(axis.text.x = element_text(angle = x.text.angle,
+                                                        hjust = xhjust))
   }
 
   .theme
