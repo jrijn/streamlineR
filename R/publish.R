@@ -1,7 +1,6 @@
-#' @include utilities.R
 #' @import ggplot2
-#' Publication ready theme
 #'
+#' @title Publication ready theme
 #' @description \itemize{ \item \strong{theme_pubr()}: Create a publication ready
 #'  theme \item \strong{theme_pubclean()}: a clean theme without axis lines, to
 #'  direct more attention to the data.  \item \strong{labs_pubr()}: Format only
@@ -30,7 +29,7 @@
 #' @param minor_grid logical. If TRUE, minor grid lines are added.
 #' @param base_line_size numerical. Specifies the default element_line() size
 #'  for plots. Defaults to base_size/20.
-#' @param base_line_size numerical. Specifies the default line size for
+#' @param base_rect_size numerical. Specifies the default line size for
 #'  element_rect() in plots. Defaults to base_size/20.
 #' @param aspect.ratio numerical. Specifies the aspect ratio of the plot.
 #' @examples
@@ -40,23 +39,24 @@
 #' # Default plot
 #' p
 #'
-#' # Use theme_stream()
-#' p + theme_stream()
+#' # Use publish()
+#' p + publish()
 #'
-#' @name theme_stream
-#' @rdname theme_stream
+#' @name publish
+#' @rdname publish
 #' @export
-theme_stream <- function(base_size = 12,
-                       base_family = "sans",
-                       border = FALSE,
-                       margin = TRUE,
-                       legend = c("top", "bottom", "left", "right", "none"),
-                       x.text.angle = 0,
-                       major_grid = TRUE,
-                       minor_grid = FALSE,
-                       base_line_size = base_size / 20,
-                       base_rect_size = base_size / 20,
-                       aspect.ratio = 1) {
+publish <- function(base_size = 12,
+                    base_family = "sans",
+                    border = FALSE,
+                    margin = TRUE,
+                    legend = c("top", "bottom", "left", "right", "none"),
+                    x.text.angle = 0,
+                    flip = FALSE,
+                    major_grid = TRUE,
+                    minor_grid = FALSE,
+                    base_line_size = base_size / 20,
+                    base_rect_size = base_size / 20,
+                    aspect.ratio = 1) {
   half_line <- base_size / 2
   if (!is.numeric(legend)) legend <- match.arg(legend)
   if (x.text.angle > 5) xhjust <- 1 else xhjust <- NULL
@@ -123,16 +123,27 @@ theme_stream <- function(base_size = 12,
 }
 
 # Wong, Bang. ???Color Blindness???. Nature Methods 8, no. 6 (June 2011): 441. https://doi.org/10.1038/nmeth.1618.
+#' @title Colorblind friendly palette (black)
 #' @rdname colorBlindBlack8
+#' @examples
+#' ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Species))+
+#'  geom_point()+
+#'  publish(border = TRUE)+
+#'  scale_color_manual(values = colorBlindBlack8)
 #' @export
 colorBlindBlack8 <- c(
   "#000000", "#E69F00", "#56B4E9", "#009E73",
   "#F0E442", "#0072B2", "#D55E00", "#CC79A7"
 )
 
+#' @title Colorblind friendly palette (grey)
 #' @rdname colorBlindGrey8
+#' @examples
+#' ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Species))+
+#'  geom_point()+
+#'  publish(border = TRUE)+
+#'  scale_color_manual(values = colorBlindGrey8)
 #' @export
-#'
 colorBlindGrey8 <- c(
   "#999999", "#E69F00", "#56B4E9", "#009E73",
   "#F0E442", "#0072B2", "#D55E00", "#CC79A7"

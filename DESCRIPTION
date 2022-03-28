@@ -8,6 +8,10 @@ Description: This package bundles a number of useful functions and
     functionalities to streamline my data analysis habits using R. 
     This includes extended pubR themes for ggplot2, color-blind friendly 
     color schemes, etc.
-License: CC0-1.0 (Creative Commons v1.0)
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Imports: ggplot2
+RoxygenNote: 7.1.2
+Collate: 
+    'publish.R'
