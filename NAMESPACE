@@ -2,5 +2,9 @@
 
 export(colorBlindBlack8)
 export(colorBlindGrey8)
+export(fit.5PL)
+export(log10_minor_break)
 export(publish)
+import(drc)
 import(ggplot2)
+import(ggpubr)

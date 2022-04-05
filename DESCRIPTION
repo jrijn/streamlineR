@@ -15,3 +15,5 @@ Imports: ggplot2
 RoxygenNote: 7.1.2
 Collate: 
     'publish.R'
+    'log10_minor_break.R'
+    'fit.5PL.R'
