@@ -4,7 +4,7 @@
 \alias{fit.5PL}
 \title{Fit a 5 parameter logistical model to dose-response data.}
 \usage{
-fit.5PL(standards, samples, Rmin = NA, Rmax = NA, summary = TRUE)
+fit.5PL(standards, samples, Rmin = NA, Rmax = NA, n = NA, summary = TRUE)
 }
 \arguments{
 \item{standards}{data.frame; With columns "dose" and "response".}

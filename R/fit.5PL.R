@@ -24,7 +24,7 @@
 #' fit.5PL(df, df2, Amin = 0, summary = T)
 #'
 fit.5PL <- function(standards, samples,
-                    Rmin = NA, Rmax = NA, summary = TRUE) {
+                    Rmin = NA, Rmax = NA, n = NA, summary = TRUE) {
 
   if(!is.data.frame(standards)) {
     warning("The parameter 'standards' is not a data frame. Returning NULL.")
@@ -40,7 +40,7 @@ fit.5PL <- function(standards, samples,
              data = standards,
              type = "continuous",
              fct = LL2.5(names = c("n", "Rmin", "Rmax", "EC50", "f"),
-                         fixed = c(NA, Rmin, Rmax, NA, NA)))
+                         fixed = c(n, Rmin, Rmax, NA, NA)))
 
   if(summary) print(summary(fit))
 

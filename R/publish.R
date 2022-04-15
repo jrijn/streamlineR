@@ -100,10 +100,11 @@ publish <- function(base_size = 12,
       legend.key = element_blank(),
       legend.title = element_text(color = "black", size = base_size),
       legend.text = element_text(color = "black", size = base_size*.85),
-      strip.background = element_rect(fill = NA, colour = "black",
+      strip.background = element_rect(fill = "black", colour = "black",
                                       size = base_line_size),
       strip.text = element_text(
-        colour = "black",
+        colour = "white",
+        face = "bold",
         margin = margin(
           t = base_size / 2,
           r = base_size / 2,
