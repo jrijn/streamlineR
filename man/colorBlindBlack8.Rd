@@ -11,7 +11,7 @@ An object of class \code{character} of length 8.
 colorBlindBlack8
 }
 \description{
-Colorblind friendly palette (black)
+Wong, Bang. ???Color Blindness???. Nature Methods 8, no. 6 (June 2011): 441. https://doi.org/10.1038/nmeth.1618.
 }
 \examples{
 ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Species))+

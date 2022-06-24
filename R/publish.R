@@ -84,7 +84,7 @@ publish <- function(base_size = 12,
   }
 
   if (minor_grid) {
-    panel.grid.minor <- element_line(size = base_line_size, linetype = "dotted")
+    panel.grid.minor <- element_line(size = base_line_size/2)
   } else {
     panel.grid.minor <- element_blank()
   }
@@ -125,7 +125,7 @@ publish <- function(base_size = 12,
   .theme
 }
 
-# Wong, Bang. ???Color Blindness???. Nature Methods 8, no. 6 (June 2011): 441. https://doi.org/10.1038/nmeth.1618.
+#' Wong, Bang. ???Color Blindness???. Nature Methods 8, no. 6 (June 2011): 441. https://doi.org/10.1038/nmeth.1618.
 #' @title Colorblind friendly palette (black)
 #' @rdname colorBlindBlack8
 #' @examples

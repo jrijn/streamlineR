@@ -1,99 +1,9 @@
 #' @import ggplot2
 #' @import drc
 #' @import ggpubr
-#'
-#' @title Fit a 5 parameter logistical model to dose-response data.
-#'
-#' @param standards data.frame; With columns "dose" and "response".
-#' @param samples data.frame; With column "response".
-#' @param Rmin numeric; Optional, define the minimum.
-#' @param Rmax numeric; Optional, define the maximum
-#' @param summary boolean; Print fit summary, default = TRUE.
-#'
-#' @return Returns a data.frame with the estimated dose values corresponding to
-#'         the samples response values.
+
+#' @title Calculate R2
 #' @export
-#'
-#' @examples
-#'
-#' df <- dplyr::rename(standard,
-#'                     response = absorbance,
-#'                     dose = concentration)
-#' df2 <- dplyr::rename(samples,
-#'                      response = absorbance.av)
-#' fit.5PL(df, df2, Amin = 0, summary = T)
-#'
-fit.5PL <- function(standards, samples,
-                    Rmin = NA, Rmax = NA, n = NA, summary = TRUE) {
-
-  if(!is.data.frame(standards)) {
-    warning("The parameter 'standards' is not a data frame. Returning NULL.")
-    return(NULL)
-  }
-
-  if(!is.data.frame(samples)) {
-    warning("The parameter 'standards' is not a data frame. Returning NULL.")
-    return(NULL)
-  }
-
-  fit <- drm(response ~ dose,
-             data = standards,
-             type = "continuous",
-             fct = LL2.5(names = c("n", "Rmin", "Rmax", "EC50", "f"),
-                         fixed = c(n, Rmin, Rmax, NA, NA)))
-
-  if(summary) print(summary(fit))
-
-  # predictions and confidence intervals.
-  lowest = min(standards$dose)/10
-  highest = max(standards$dose)*10
-  demo.fits <- expand.grid(dose=exp(seq(log(lowest), log(highest), length=100)))
-
-  # new data with predictions
-  pm <- predict(fit, newdata=demo.fits, interval="confidence")
-  demo.fits$p <- pm[,1]
-  demo.fits$pmin <- pm[,2]
-  demo.fits$pmax <- pm[,3]
-  # print(head(demo.fits))
-
-  samples.fit <- samples %>%
-    bind_cols(ED(fit, samples$response, type = "absolute", display = F))
-  # print(head(samples.fit))
-
-  p1 <- ggplot(standards, aes(dose, response))+
-    scale_x_continuous(trans = scales::log10_trans(),
-                       minor_breaks = log10_minor_break())+
-    geom_point()+
-    geom_point(data = samples.fit,
-               aes(x = exp(Estimate),
-                   y = response),
-               color = "red")+
-    geom_line(data = demo.fits, aes(x = dose, y = p))+
-    geom_ribbon(data = demo.fits,
-                aes(x = dose,
-                    y = p,
-                    ymin = pmin,
-                    ymax = pmax),
-                alpha = 0.15)+
-    labs(caption = paste("pseudo-R2:",
-                         round(R2nls(fit)$PseudoR2, digits = 4)))+
-    publish(major_grid = T, minor_grid = T)
-
-  fit.res <- as.data.frame(fit$predres)
-  colnames(fit.res) <- make.names(colnames(fit.res))
-
-  p2 <- ggplot(fit.res, aes(Predicted.values, Residuals))+
-    geom_hline(yintercept = 0, linetype = "dashed")+
-    geom_point()+
-    labs(x = "Predicted values")+
-    publish(major_grid = T, minor_grid = T)
-
-  print(ggarrange(p1, p2),
-        align = "hv")
-
-  return(samples.fit)
-}
-
 # From: https://github.com/OnofriAndreaPG/aomisc
 R2nls <- function(object){
 
@@ -144,3 +54,108 @@ R2nls <- function(object){
   )
   returnList
 }
+
+
+
+
+#' @title Fit a 5 parameter logistical model to dose-response data.
+#'
+#' @param standards data.frame; With columns "dose" and "response".
+#' @param samples data.frame; With column "response".
+#' @param Rmin numeric; Optional, define the minimum.
+#' @param Rmax numeric; Optional, define the maximum
+#' @param summary boolean; Print fit summary, default = TRUE.
+#'
+#' @return Returns a data.frame with the estimated dose values corresponding to
+#'         the samples response values.
+#' @export
+#'
+#' @examples
+#'
+#' df <- dplyr::rename(standard,
+#'                     response = absorbance,
+#'                     dose = concentration)
+#' df2 <- dplyr::rename(samples,
+#'                      response = absorbance.av)
+#' fit.5PL(df, df2, Amin = 0, summary = T)
+#'
+fit.5PL <- function(standards, samples,
+                    Rmin = NA, Rmax = NA, n = NA, summary = TRUE) {
+
+  if(!is.data.frame(standards)) {
+    warning("The parameter 'standards' is not a data frame. Returning NULL.")
+    return(NULL)
+  }
+
+  if(!is.data.frame(samples)) {
+    warning("The parameter 'standards' is not a data frame. Returning NULL.")
+    return(NULL)
+  }
+
+  fit <- drm(response ~ dose,
+             data = standards,
+             type = "continuous",
+             fct = LL2.5(names = c("n", "Rmin", "Rmax", "EC50", "f"),
+                         fixed = c(n, Rmin, Rmax, NA, NA)))
+
+  if(summary) print(summary(fit))
+
+  # predictions and confidence intervals.
+  lowest = min(standards$dose)/10
+  highest = max(standards$dose)*10
+  demo.fits <- expand.grid(dose=exp(seq(log(0.001), log(highest), length=100)))
+
+  # new data with predictions
+  pm <- predict(fit, newdata=demo.fits, interval="confidence")
+  demo.fits$p <- pm[,1]
+  demo.fits$pmin <- pm[,2]
+  demo.fits$pmax <- pm[,3]
+  # print(head(demo.fits))
+
+  samples.fit <- samples %>%
+    bind_cols(ED(fit, samples$response, type = "absolute", display = F))
+  # print(head(samples.fit))
+
+  p1 <- ggplot(standards, aes(dose, response))+
+    scale_x_continuous(trans = scales::log10_trans(),
+                       minor_breaks = log10_minor_break(),
+                       limits = c(1E1, max(standards$dose)*1.1))+
+    scale_y_continuous(limits = c(0, max(standards$response)*1.1))+
+    geom_point()+
+    geom_point(data = samples.fit,
+               aes(x = exp(Estimate),
+                   y = response),
+               color = "red")+
+    geom_line(data = demo.fits, aes(x = dose, y = p))+
+    geom_ribbon(data = demo.fits,
+                aes(x = dose,
+                    y = p,
+                    ymin = pmin,
+                    ymax = pmax),
+                alpha = 0.15)+
+    labs(caption = paste("pseudo-R2:",
+                         round(R2nls(fit)$PseudoR2, digits = 4)))+
+    publish(major_grid = T, minor_grid = T)
+
+  fit.res <- as.data.frame(fit$predres)
+  colnames(fit.res) <- make.names(colnames(fit.res))
+
+  p2 <- ggplot(fit.res, aes(Predicted.values, Residuals))+
+    geom_hline(yintercept = 0, linetype = "dashed")+
+    geom_point()+
+    labs(x = "Predicted values")+
+    publish(major_grid = T, minor_grid = T)
+
+  print(ggarrange(p1, p2),
+        align = "hv")
+
+  returnList <- list(
+    estimates = samples.fit,
+    fit = p1,
+    estimates = p2
+  )
+
+  return(returnList)
+}
+
+
