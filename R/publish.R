@@ -128,6 +128,7 @@ publish <- function(base_size = 12,
 #' Wong, Bang. ???Color Blindness???. Nature Methods 8, no. 6 (June 2011): 441. https://doi.org/10.1038/nmeth.1618.
 #' @title Colorblind friendly palette (black)
 #' @rdname colorBlindBlack8
+#' @import ggplot2
 #' @examples
 #' ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Species))+
 #'  geom_point()+
@@ -141,6 +142,7 @@ colorBlindBlack8 <- c(
 
 #' @title Colorblind friendly palette (grey)
 #' @rdname colorBlindGrey8
+#' @import ggplot2
 #' @examples
 #' ggplot(iris, aes(Sepal.Width, Sepal.Length, color = Species))+
 #'  geom_point()+

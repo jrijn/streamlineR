@@ -6,7 +6,7 @@ log10_minor_break = function (...){
 #'
 #' @param x
 #'
-#' @return
+#' @return minor breaks object
 #' @export
 #'
 #' @examples

@@ -11,9 +11,11 @@ Description: This package bundles a number of useful functions and
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Imports: ggplot2
-RoxygenNote: 7.1.2
+Imports: tidyverse, drc, ggpubr, rstatix, ggplot2, rawrr
+RoxygenNote: 7.2.2
 Collate: 
     'publish.R'
     'log10_minor_break.R'
     'fit.5PL.R'
+    'importChromatograms.R'
+    'plotChromatograms.R'

@@ -10,7 +10,7 @@ log10_minor_break(...)
 \item{x}{}
 }
 \value{
-
+minor breaks object
 }
 \description{
 This function is scavenged from Stackoverflow and automates log scale minor
