@@ -42,3 +42,11 @@ if (isFALSE(rawrr::.checkDllInMonoPath())){
 
 rawrr::installRawrrExe()
 ```
+
+After installing rawrr, plotting Orbitrap chromatograms is super easy:
+
+```{r}
+rawfile <- "C:/myfile.raw"
+lc <- importChromatograms(rawfile)
+plotChromatograms(lc)
+```
