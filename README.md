@@ -2,6 +2,17 @@
  
 A package with a variety of functions made to streamline personal habits in R. 
 
+## Installation
+
+Package is installed using the devtools package:
+
+```{r}
+if (!require("devtools", quietly = TRUE))
+    install.packages("devtools")
+
+devtools::install_github("jrijn/streamlineR")
+```
+
 ## Publish-ready theme
 
 The function "publish" is a customized ggplot theme based on the "pubr" package. It also includes colorblind-safe color palettes.
