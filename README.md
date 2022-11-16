@@ -15,9 +15,7 @@ devtools::install_github("jrijn/streamlineR")
 
 ## Publish-ready theme
 
-The function "publish" is a customized ggplot theme based on the "pubr" package. It also includes colorblind-safe color palettes.
-
-It's super easy to use!
+The function "publish" is a customized ggplot theme based on the "ggpubr" package. It also includes colorblind-safe color palettes, and is very easy to use:
 
 ```{r}
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
