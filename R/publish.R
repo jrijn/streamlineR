@@ -2,16 +2,11 @@
 #'
 #' @title Publication ready theme
 #' @description \itemize{ \item \strong{theme_pubr()}: Create a publication ready
-#'  theme \item \strong{theme_pubclean()}: a clean theme without axis lines, to
-#'  direct more attention to the data.  \item \strong{labs_pubr()}: Format only
-#'  plot labels to a publication ready style \item \strong{theme_classic2()}:
-#'  Create a classic theme with axis lines. \item \strong{clean_theme()}: Remove
-#'  axis lines, ticks, texts and titles. \item \strong{clean_table_theme()}:
-#'  Clean the the theme of a table, such as those created by
-#'  \code{\link{ggsummarytable}()}}.
+#' theme based on the ggpubr() package. The publish() function is a customized 
+#' version of theme_bw() adjusted to my personal preference. 
 #' @param base_size base font size
 #' @param base_family base font family
-#' @param border logical value. Default is FALSE. If TRUE, add panel border.
+#' @param border logical value. Default is TRUE. If TRUE, add panel border.
 #' @param margin logical value. Default is TRUE. If FALSE, reduce plot margin.
 #' @param legend character specifying legend position. Allowed values are one of
 #'  c("top", "bottom", "left", "right", "none"). Default is "top" side position.
@@ -23,14 +18,17 @@
 #'  instance use legend = c(0.8, 0.2).
 #' @param x.text.angle Rotation angle of x axis tick labels. Default value is 0.
 #'  Use 90 for vertical text.
+#' @param facet_fill fill color for facet strips. Defaults to "grey75".
+#' @param facet_color border color for facet strips. Defaults to "NA".
+#' @param facet_text_color text color for facet strips. Defaults to "white".
 #' @param flip logical. If TRUE, grid lines are added to y axis instead of x
 #'  axis.
 #' @param major_grid logical. If TRUE, major grid lines are added.
 #' @param minor_grid logical. If TRUE, minor grid lines are added.
 #' @param base_line_size numerical. Specifies the default element_line() size
-#'  for plots. Defaults to base_size/20.
+#'  for plots. Defaults to 0.5.
 #' @param base_rect_size numerical. Specifies the default line size for
-#'  element_rect() in plots. Defaults to base_size/20.
+#'  element_rect() in plots. Defaults to 1.
 #' @param aspect.ratio numerical. Specifies the aspect ratio of the plot.
 #' @examples
 #' p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
