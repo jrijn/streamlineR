@@ -57,7 +57,7 @@ publish <- function(base_size = 12,
                     facet_fill = "grey75",
                     facet_color = NA,
                     facet_text_color = "white",
-                    base_line_size = 1,
+                    base_line_size = 0.5,
                     base_rect_size = 1,
                     aspect.ratio = 1) {
   half_line <- base_size / 2
