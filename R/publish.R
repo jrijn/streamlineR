@@ -89,7 +89,7 @@ publish <- function(base_size = 12,
     panel.grid.minor <- element_blank()
   }
 
-  .theme <- theme_bw(base_size = base_size, base_family = base_family) %+replace%
+  .theme <- theme_bw(base_size = base_size, base_family = base_family, facet_fill = "black") %+replace%
     theme(
       aspect.ratio = aspect.ratio,
       panel.border = panel.border,
@@ -100,7 +100,7 @@ publish <- function(base_size = 12,
       legend.key = element_blank(),
       legend.title = element_text(color = "black", size = base_size),
       legend.text = element_text(color = "black", size = base_size*.85),
-      strip.background = element_rect(fill = "black", colour = "black",
+      strip.background = element_rect(fill = facet_fill, colour = "black",
                                       size = base_line_size),
       strip.text = element_text(
         colour = "white",
