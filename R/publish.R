@@ -52,13 +52,13 @@ publish <- function(base_size = 12,
                     legend = c("right", "top", "bottom", "left", "none"),
                     x.text.angle = 0,
                     flip = FALSE,
-                    major_grid = FALSE,
+                    major_grid = TRUE,
                     minor_grid = FALSE,
-                    facet_fill = "black",
-                    facet_color = "black",
+                    facet_fill = "grey75",
+                    facet_color = NA,
                     facet_text_color = "white",
-                    base_line_size = base_size / 20,
-                    base_rect_size = base_size / 20,
+                    base_line_size = 1,
+                    base_rect_size = 1,
                     aspect.ratio = 1) {
   half_line <- base_size / 2
   if (!is.numeric(legend)) legend <- match.arg(legend)
