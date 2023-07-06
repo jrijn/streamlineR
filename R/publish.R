@@ -54,6 +54,7 @@ publish <- function(base_size = 12,
                     flip = FALSE,
                     major_grid = FALSE,
                     minor_grid = FALSE,
+                    facet_fill = "black",
                     base_line_size = base_size / 20,
                     base_rect_size = base_size / 20,
                     aspect.ratio = 1) {
@@ -89,7 +90,7 @@ publish <- function(base_size = 12,
     panel.grid.minor <- element_blank()
   }
 
-  .theme <- theme_bw(base_size = base_size, base_family = base_family, facet_fill = "black") %+replace%
+  .theme <- theme_bw(base_size = base_size, base_family = base_family) %+replace%
     theme(
       aspect.ratio = aspect.ratio,
       panel.border = panel.border,
