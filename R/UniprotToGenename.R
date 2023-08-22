@@ -61,6 +61,7 @@ UniprotToGenename <- function(ids) {
     url <- paste(url, "?format=tsv", sep = "")
     r <- GET(url = url, accept_json())
     resultsTable = read.table(text = content(r), sep = "\t", header=TRUE)
-    print(resultsTable)
+    #print(resultsTable)
   }
+  return(resultsTable)
 }
