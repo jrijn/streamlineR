@@ -1,4 +1,4 @@
-#' @import ggplot2
+#' @import httr
 #'
 #' @title UniprotToGenename
 #' @description This is a simple function which uses the Uniprot REST API to
@@ -12,7 +12,6 @@
 #' @rdname UniprotToGenename
 #' @export
 #'
-library(httr)
 
 UniprotToGenename <- function(ids) {
 

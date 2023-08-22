@@ -12,10 +12,13 @@ publish(
   legend = c("right", "top", "bottom", "left", "none"),
   x.text.angle = 0,
   flip = FALSE,
-  major_grid = FALSE,
+  major_grid = TRUE,
   minor_grid = FALSE,
-  base_line_size = base_size/20,
-  base_rect_size = base_size/20,
+  facet_fill = "grey75",
+  facet_color = NA,
+  facet_text_color = "white",
+  base_line_size = 0.5,
+  base_rect_size = 1,
   aspect.ratio = 1
 )
 }
@@ -24,7 +27,7 @@ publish(
 
 \item{base_family}{base font family}
 
-\item{border}{logical value. Default is FALSE. If TRUE, add panel border.}
+\item{border}{logical value. Default is TRUE. If TRUE, add panel border.}
 
 \item{margin}{logical value. Default is TRUE. If FALSE, reduce plot margin.}
 
@@ -47,23 +50,24 @@ axis.}
 
 \item{minor_grid}{logical. If TRUE, minor grid lines are added.}
 
+\item{facet_fill}{fill color for facet strips. Defaults to "grey75".}
+
+\item{facet_color}{border color for facet strips. Defaults to "NA".}
+
+\item{facet_text_color}{text color for facet strips. Defaults to "white".}
+
 \item{base_line_size}{numerical. Specifies the default element_line() size
-for plots. Defaults to base_size/20.}
+for plots. Defaults to 0.5.}
 
 \item{base_rect_size}{numerical. Specifies the default line size for
-element_rect() in plots. Defaults to base_size/20.}
+element_rect() in plots. Defaults to 1.}
 
 \item{aspect.ratio}{numerical. Specifies the aspect ratio of the plot.}
 }
 \description{
-\itemize{ \item \strong{theme_pubr()}: Create a publication ready
- theme \item \strong{theme_pubclean()}: a clean theme without axis lines, to
- direct more attention to the data.  \item \strong{labs_pubr()}: Format only
- plot labels to a publication ready style \item \strong{theme_classic2()}:
- Create a classic theme with axis lines. \item \strong{clean_theme()}: Remove
- axis lines, ticks, texts and titles. \item \strong{clean_table_theme()}:
- Clean the the theme of a table, such as those created by
- \code{\link{ggsummarytable}()}}.
+Create a publication ready theme based on the ggpubr() package.
+The publish() function is a customized version of theme_bw() adjusted to my
+personal preference.
 }
 \examples{
 p <- ggplot(mtcars, aes(x = wt, y = mpg)) +

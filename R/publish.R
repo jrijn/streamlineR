@@ -1,9 +1,9 @@
 #' @import ggplot2
 #'
 #' @title Publication ready theme
-#' @description \itemize{ \item \strong{theme_pubr()}: Create a publication ready
-#' theme based on the ggpubr() package. The publish() function is a customized 
-#' version of theme_bw() adjusted to my personal preference. 
+#' @description Create a publication ready theme based on the ggpubr() package.
+#' The publish() function is a customized version of theme_bw() adjusted to my
+#' personal preference.
 #' @param base_size base font size
 #' @param base_family base font family
 #' @param border logical value. Default is TRUE. If TRUE, add panel border.
@@ -43,6 +43,7 @@
 #' @name publish
 #' @rdname publish
 #' @export
+#'
 publish <- function(base_size = 12,
                     base_family = "sans",
                     border = TRUE,

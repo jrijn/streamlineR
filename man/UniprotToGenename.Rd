@@ -3,6 +3,9 @@
 \name{UniprotToGenename}
 \alias{UniprotToGenename}
 \title{UniprotToGenename}
+\usage{
+UniprotToGenename(ids)
+}
 \arguments{
 \item{ids}{A character vector of Uniprot IDs.}
 }
