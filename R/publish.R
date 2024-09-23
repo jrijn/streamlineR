@@ -44,20 +44,20 @@
 #' @rdname publish
 #' @export
 #'
-publish <- function(base_size = 12,
+publish <- function(base_size = 6,
                     base_family = "sans",
                     border = TRUE,
                     margin = TRUE,
                     legend = c("right", "top", "bottom", "left", "none"),
                     x.text.angle = 0,
                     flip = FALSE,
-                    major_grid = TRUE,
+                    major_grid = FALSE,
                     minor_grid = FALSE,
-                    facet_fill = "black",
+                    facet_fill = NA,
                     facet_color = NA,
-                    facet_text_color = "white",
+                    facet_text_color = "black",
                     base_line_size = 0.5,
-                    base_rect_size = 1,
+                    base_rect_size = 0.5,
                     aspect.ratio = 1) {
   half_line <- base_size / 2
   if (!is.numeric(legend)) legend <- match.arg(legend)
