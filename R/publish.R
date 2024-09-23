@@ -101,7 +101,7 @@ publish <- function(base_size = 6,
       axis.text = element_text(color = "black", size = base_size),
       legend.key = element_blank(),
       legend.title = element_text(color = "black", size = base_size),
-      legend.text = element_text(color = "black", size = base_size*.85),
+      legend.text = element_text(color = "black", size = base_size*1),
       strip.background = element_rect(fill = facet_fill, colour = facet_color,
                                       size = base_line_size),
       strip.text = element_text(
