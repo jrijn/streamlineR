@@ -44,7 +44,7 @@
 #' @rdname publish
 #' @export
 #'
-publish <- function(base_size = 6,
+publish <- function(base_size = 12,
                     base_family = "sans",
                     border = TRUE,
                     margin = TRUE,
